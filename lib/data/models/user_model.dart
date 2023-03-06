@@ -4,6 +4,7 @@ class UserModel {
   String? phoneNumber;
   String? email;
   String? address;
+  String? location;
   int? totalPrice ;
   int? uId ;
   bool? selected;
@@ -15,6 +16,7 @@ class UserModel {
     required this.lastName,
     required this.phoneNumber,
     required this.email,
+    required this.location,
     required this.address,
     required this.totalPrice,
     required this.uId ,
@@ -32,6 +34,7 @@ class UserModel {
     totalPrice = fire['totalPrice'];
     uId = fire['uId'];
     selected = fire['selected'];
+    location = fire['location'];
     done = fire['done'];
 
   }
@@ -44,6 +47,7 @@ class UserModel {
       'phoneNumber' : phoneNumber,
       'address' : address,
       'email' : email,
+      'location' : location,
       'totalPrice' : totalPrice,
       'uId' : uId,
       'selected' : selected,

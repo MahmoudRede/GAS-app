@@ -79,3 +79,5 @@ class UserLoginLoadingState  extends AppStates{}
 class UserLoginSuccessState  extends AppStates{}
 class UserLoginErrorState  extends AppStates{}
 
+class LocationLinkLanuchState  extends AppStates{}
+

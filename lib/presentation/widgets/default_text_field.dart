@@ -68,7 +68,11 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
                 borderRadius: BorderRadius.circular(3)
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(3),
+                borderRadius: BorderRadius.circular(7),
+                borderSide: const BorderSide(
+                    color: Colors.red,
+
+                )
             ),
             errorStyle: GoogleFonts.almarai(
               fontSize: 13.0,
@@ -112,14 +116,23 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
                 color: Colors.grey[500]
             ),
           border: InputBorder.none,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
-          ),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(7),
+                borderSide: const BorderSide(
+                    color: Colors.white
+                )
+            ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(7)
+              borderRadius: BorderRadius.circular(7),
+              borderSide: const BorderSide(
+                  color: Colors.white
+              )
           ),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(7),
+              borderSide: const BorderSide(
+                color: Colors.red
+              )
           ),
           errorStyle: GoogleFonts.almarai(
             fontSize: 13.0,

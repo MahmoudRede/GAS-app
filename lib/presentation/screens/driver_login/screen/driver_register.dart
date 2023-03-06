@@ -59,162 +59,161 @@ class _DriverRegisterScreenState extends State<DriverRegisterScreen> {
           var cubit=AppCubit.get(context);
           return Scaffold(
             backgroundColor: ColorManager.primaryColor,
-            appBar: AppBar(
-              leading: IconButton(
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                      Icons.arrow_back_ios,
-                       color: Colors.black,
-                  ),
-              ),
-              backgroundColor: ColorManager.primaryColor,
-              elevation: 0,
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarIconBrightness: Brightness.light,
-                statusBarColor: Color(0Xff000f2c),
-              ),
-            ),
-            body: Form(
-              key: formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 0, left: 30, right: 30),
-                      child: Image.asset(
-                        'assets/images/gas.png',
-                        height: MediaQuery.of(context).size.height * .16,
+            body: SafeArea(
+              child: Form(
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: IconButton(
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
-                    ),
 
-                    SizedBox(height: MediaQuery.of(context).size.height * .013,),
-
-
-                    Text(AppLocalizations.of(context)!.translate('appName').toString(),style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).size.height*.03,
-                        color: ColorManager.black),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * .013,),
-
-                    Text('أنت أطلب و إحنا نوصل',style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w300,
-                        fontSize: MediaQuery.of(context).size.height*.027,
-                        color: ColorManager.black),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * .04,),
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
-                      child: DefaultTextField(
-                        hintText: AppLocalizations.of(context)!.translate('name').toString(),
-                        controller: name,
-                        isPass: false,
-                        prefixIcon: Icons.person,
-                        textInputType: TextInputType.text,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 0, left: 30, right: 30),
+                        child: Image.asset(
+                          'assets/images/gas.png',
+                          height: MediaQuery.of(context).size.height * .16,
+                        ),
                       ),
-                    ),
 
-                    SizedBox(height: MediaQuery.of(context).size.height * .025,),
+                      SizedBox(height: MediaQuery.of(context).size.height * .013,),
 
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
-                      child: DefaultTextField(
-                        hintText: AppLocalizations.of(context)!.translate('email').toString(),
-                        controller: email,
-                        isPass: false,
-                        prefixIcon: Icons.person,
-                        textInputType: TextInputType.text,
+
+                      Text(AppLocalizations.of(context)!.translate('appName').toString(),style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w700,
+                          fontSize: MediaQuery.of(context).size.height*.03,
+                          color: ColorManager.black),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
 
-                    SizedBox(height: MediaQuery.of(context).size.height * .025,),
+                      SizedBox(height: MediaQuery.of(context).size.height * .013,),
 
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
-                      child: DefaultTextField(
-                        hintText: AppLocalizations.of(context)!.translate('password').toString(),
-                        controller: password,
-                        prefixIcon: Icons.lock,
-                        isPass: true,
-                        textInputType: TextInputType.text,
+                      Text('أنت أطلب و إحنا نوصل',style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w300,
+                          fontSize: MediaQuery.of(context).size.height*.027,
+                          color: ColorManager.black),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
 
-                    SizedBox(height: MediaQuery.of(context).size.height * .025,),
+                      SizedBox(height: MediaQuery.of(context).size.height * .04,),
 
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
-                      child: DefaultTextField(
-                        hintText: AppLocalizations.of(context)!.translate('phoneNumber').toString(),
-                        controller: phone,
-                        prefixIcon: Icons.phone,
-                        isPass: false,
-                        textInputType: TextInputType.phone,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
+                        child: DefaultTextField(
+                          hintText: AppLocalizations.of(context)!.translate('name').toString(),
+                          controller: name,
+                          isPass: false,
+                          prefixIcon: Icons.person,
+                          textInputType: TextInputType.text,
+                        ),
                       ),
-                    ),
 
-                    SizedBox(
-                      height: size.height * .04,
-                    ),
+                      SizedBox(height: MediaQuery.of(context).size.height * .025,),
 
-                    state is SaveUserLoadingState|| state is UserRegisterLoadingState?
-                    Center(
-                      child: CircularProgressIndicator(color: ColorManager.black,),
-                    ):
-                    MaterialButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7)
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
+                        child: DefaultTextField(
+                          hintText: AppLocalizations.of(context)!.translate('email').toString(),
+                          controller: email,
+                          isPass: false,
+                          prefixIcon: Icons.person,
+                          textInputType: TextInputType.text,
+                        ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.182:MediaQuery.of(context).size.height*.155,
-                        vertical: MediaQuery.of(context).size.height*.018,
+
+                      SizedBox(height: MediaQuery.of(context).size.height * .025,),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
+                        child: DefaultTextField(
+                          hintText: AppLocalizations.of(context)!.translate('password').toString(),
+                          controller: password,
+                          prefixIcon: Icons.lock,
+                          isPass: true,
+                          textInputType: TextInputType.text,
+                        ),
                       ),
-                      color: ColorManager.buttonColor,
-                      onPressed: (){
 
-                        if(formKey.currentState!.validate()){
+                      SizedBox(height: MediaQuery.of(context).size.height * .025,),
 
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
+                        child: DefaultTextField(
+                          hintText: AppLocalizations.of(context)!.translate('phoneNumber').toString(),
+                          controller: phone,
+                          prefixIcon: Icons.phone,
+                          isPass: false,
+                          textInputType: TextInputType.phone,
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: size.height * .04,
+                      ),
+
+                      state is SaveUserLoadingState|| state is UserRegisterLoadingState?
+                      Center(
+                        child: CircularProgressIndicator(color: ColorManager.black,),
+                      ):
+                      MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7)
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.182:MediaQuery.of(context).size.height*.155,
+                          vertical: MediaQuery.of(context).size.height*.018,
+                        ),
+                        color: ColorManager.buttonColor,
+                        onPressed: (){
 
                           if(formKey.currentState!.validate()){
 
-                            cubit.userRegister(
-                                email: email.text,
-                                password: password.text,
-                                name: name.text,
-                                phoneNumber: phone.text
-                            );
+
+                            if(formKey.currentState!.validate()){
+
+                              cubit.userRegister(
+                                  email: email.text,
+                                  password: password.text,
+                                  name: name.text,
+                                  phoneNumber: phone.text
+                              );
+
+                            }
+
+
 
                           }
 
+                        },
+                        child:Text(AppLocalizations.of(context)!.translate('registerTitle').toString(),style: GoogleFonts.almarai(
+                            fontWeight: FontWeight.w600,
+                            fontSize: MediaQuery.of(context).size.height*.022,
+                            color: ColorManager.white
+                        ),),
+                      ),
 
-
-                        }
-
-                      },
-                      child:Text(AppLocalizations.of(context)!.translate('registerTitle').toString(),style: GoogleFonts.almarai(
-                          fontWeight: FontWeight.w600,
-                          fontSize: MediaQuery.of(context).size.height*.022,
-                          color: ColorManager.white
-                      ),),
-                    ),
-
-                    SizedBox(
-                      height: size.height * .04,
-                    ),
+                      SizedBox(
+                        height: size.height * .04,
+                      ),
 
 
 
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

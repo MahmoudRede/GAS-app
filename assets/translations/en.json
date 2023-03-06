@@ -54,9 +54,14 @@
   "driverAccept": "Accept Driver",
   "driverRefuse": "Refuse Driver",
   "loginAsAGuest": "login as a guest",
+  "updateOrders": "Update Orders",
+  "shareYourLocation": "Share your location",
+  "location": "Location",
+  "yes": "Yes",
+  "no": "No",
+  "attentionMessage": "Are you sure you want to deliver this order",
+  "itemAddedToYourOrders": "Item added to your orders",
+  "itemDeleteToYourOrders": "Item delete to your orders",
   "warningToast": "You must login first and try again"
-
-
-
 
 }

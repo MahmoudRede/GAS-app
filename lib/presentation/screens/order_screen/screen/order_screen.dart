@@ -114,6 +114,7 @@ class OrderScreen extends StatelessWidget {
                                       lastName: cubit.lastName.text,
                                       email: cubit.email.text,
                                       address: cubit.address.text,
+                                      location: cubit.location.text,
                                       phoneNumber: cubit.phoneNumber.text,
                                       uId: CashHelper.getData(key: 'userUid',),
 
@@ -187,6 +188,24 @@ class OrderScreen extends StatelessWidget {
                             hintText: '',
                             prefixIcon: Icons.location_on_rounded,
                             controller: cubit.address,
+                            textInputType: TextInputType.text,
+                          ),
+
+
+                          SizedBox(height: MediaQuery.of(context).size.height*.02,),
+
+
+                          Text(AppLocalizations.of(context)!.translate('shareYourLocation').toString(),style: GoogleFonts.almarai(
+                              fontWeight: FontWeight.w700,
+                              fontSize: MediaQuery.of(context).size.height*.025,
+
+                              color: ColorManager.black
+                          ),),
+                          SizedBox(height: MediaQuery.of(context).size.height*.015,),
+                          DefaultTextField(
+                            hintText: '',
+                            prefixIcon: Icons.my_location_outlined,
+                            controller: cubit.location,
                             textInputType: TextInputType.text,
                           ),
 

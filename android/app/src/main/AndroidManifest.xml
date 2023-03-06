@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gas.gas">
    <application
-        android:label="GAS+"
+        android:label="Gas Plus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

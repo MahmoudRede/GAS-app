@@ -580,6 +580,7 @@ class AppCubit extends Cubit<AppStates>{
   TextEditingController email =TextEditingController();
   TextEditingController phoneNumber =TextEditingController();
   TextEditingController address =TextEditingController();
+  TextEditingController location =TextEditingController();
 
 
   // =============================================
@@ -591,6 +592,7 @@ class AppCubit extends Cubit<AppStates>{
     required String email,
     required String phoneNumber,
     required String address,
+    required String location,
     required int uId,
     required context
   })async{
@@ -600,6 +602,7 @@ class AppCubit extends Cubit<AppStates>{
         lastName: lastName,
         phoneNumber: phoneNumber,
         address: address,
+        location: location,
         email: email,
         totalPrice: totalPrice,
         uId: uId,
@@ -686,7 +689,7 @@ class AppCubit extends Cubit<AppStates>{
 
   Future <void> toPrivacy()async
   {
-    String url= "https://github.com/MahmoudRede/gas_privacy_terms";
+    String url= "https://www.freeprivacypolicy.com/live/b9836dca-bb1f-451d-9d36-9b9549719cde";
     await launch(url , forceSafariVC: false);
     emit(FacebookLaunchState());
   }
@@ -767,7 +770,7 @@ class AppCubit extends Cubit<AppStates>{
     required String phoneNumber,
     required String address,
     required int totalPrice,
-
+    required context
    })async{
 
     emit(UpdateOrdersLoadingState());
@@ -782,6 +785,7 @@ class AppCubit extends Cubit<AppStates>{
           email: email,
           phoneNumber: phoneNumber,
           totalPrice: totalPrice,
+          context: context
       );
 
       getAllUserOrders();
@@ -844,6 +848,7 @@ class AppCubit extends Cubit<AppStates>{
         required String phoneNumber,
         required int totalPrice,
         required String address,
+        required context
       }) async{
 
     return database3?.transaction((txn) {
@@ -855,7 +860,7 @@ class AppCubit extends Cubit<AppStates>{
         getSelectedOrdersDatabase(database3).then((value){
           selectedOrders=value;
         });
-        customToast(title: 'Item added to your orders', color: ColorManager.red);
+        customToast(title: AppLocalizations.of(context)!.translate('itemAddedToYourOrders').toString() ,color: ColorManager.red);
         emit(InsertDatabaseSuccessState());
 
       }).catchError((error){
@@ -891,11 +896,11 @@ class AppCubit extends Cubit<AppStates>{
     });
   }
 
-  Future deleteSelectedOrdersDatabase({required String name})async{
+  Future deleteSelectedOrdersDatabase({required String name,required context})async{
 
     return await database3?.rawDelete('DELETE FROM selectedOrder WHERE name = ?', [name]).then((value) {
       debugPrint('Item Deleted');
-      customToast(title: 'Item deleted form your orders', color: ColorManager.red);
+      customToast(title: AppLocalizations.of(context)!.translate('itemDeleteToYourOrders').toString(), color: ColorManager.red);
       getSelectedOrdersDatabase(database3).then((value) {
         selectedOrders=value;
       });
@@ -1200,5 +1205,12 @@ class AppCubit extends Cubit<AppStates>{
 
     });
 
+  }
+
+  Future <void> toLocation({required String locationLink})async
+  {
+    String url= locationLink;
+    await launch(url , forceSafariVC: false);
+    emit(LocationLinkLanuchState());
   }
 }

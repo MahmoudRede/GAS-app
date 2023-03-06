@@ -65,164 +65,153 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
           var cubit=AppCubit.get(context);
           return Scaffold(
             backgroundColor: ColorManager.primaryColor,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              toolbarHeight: 0,
-              elevation: 0,
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarIconBrightness: Brightness.light,
-                statusBarColor: Color(0Xff000f2c),
-              ),
-            ),
-            body: Form(
-              key: formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * .06,),
+            body: SafeArea(
+              child: Form(
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).size.height * .04,),
 
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 30, left: 30, right: 30),
-                      child: Image.asset(
-                        'assets/images/gas.png',
-                        height: MediaQuery.of(context).size.height * .16,
-                      ),
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * .013,),
-
-
-                    Text(AppLocalizations.of(context)!.translate('appName').toString(),style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).size.height*.03,
-                        color: ColorManager.black),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * .013,),
-
-                    Text('أنت أطلب و إحنا نوصل',style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w300,
-                        fontSize: MediaQuery.of(context).size.height*.027,
-                        color: ColorManager.black),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * .06,),
-
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
-                      child: DefaultTextField(
-                        hintText: AppLocalizations.of(context)!.translate('email').toString(),
-                        controller: email,
-                        isPass: false,
-                        prefixIcon: Icons.person,
-                        textInputType: TextInputType.text,
-                      ),
-                    ),
-
-                    SizedBox(height: MediaQuery.of(context).size.height * .035,),
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
-                      child: DefaultTextField(
-                        hintText: AppLocalizations.of(context)!.translate('password').toString(),
-                        controller: password,
-                        prefixIcon: Icons.lock,
-                        isPass: true,
-                        textInputType: TextInputType.text,
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: size.height * .04,
-                    ),
-
-                    state is UserLoginLoadingState?
-                    Center(
-                      child: CircularProgressIndicator(color: ColorManager.black,),
-                    ):
-                    MaterialButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7)
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.2:MediaQuery.of(context).size.height*.155,
-                        vertical: MediaQuery.of(context).size.height*.018,
-                      ),
-                      color: ColorManager.buttonColor,
-                      onPressed: (){
-
-                        if(formKey.currentState!.validate()){
-
-                          cubit.userLogin(
-                              email: email.text,
-                              password: password.text
-                          );
-
-                        }
-
-
-                      },
-                      child:Text(AppLocalizations.of(context)!.translate('login').toString(),style: GoogleFonts.almarai(
-                          fontWeight: FontWeight.w600,
-                          fontSize: MediaQuery.of(context).size.height*.022,
-                          color: ColorManager.white
-                      ),),
-                    ),
-
-
-                    SizedBox(
-                      height: size.height * .04,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(AppLocalizations.of(context)!.translate('registerMessage').toString(),style: GoogleFonts.almarai(
-                            fontWeight: FontWeight.w300,
-                            fontSize: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.022:MediaQuery.of(context).size.height*.025,
-                            color: ColorManager.black),
-                          textAlign: TextAlign.center,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 30, left: 30, right: 30),
+                        child: Image.asset(
+                          'assets/images/gas.png',
+                          height: MediaQuery.of(context).size.height * .16,
                         ),
+                      ),
 
-                        SizedBox(
-                          width: size.height * .007,
+                      SizedBox(height: MediaQuery.of(context).size.height * .013,),
+
+
+                      Text(AppLocalizations.of(context)!.translate('appName').toString(),style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w700,
+                          fontSize: MediaQuery.of(context).size.height*.03,
+                          color: ColorManager.black),
+                        textAlign: TextAlign.center,
+                      ),
+
+                      SizedBox(height: MediaQuery.of(context).size.height * .013,),
+
+                      Text('أنت أطلب و إحنا نوصل',style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w300,
+                          fontSize: MediaQuery.of(context).size.height*.027,
+                          color: ColorManager.black),
+                        textAlign: TextAlign.center,
+                      ),
+
+                      SizedBox(height: MediaQuery.of(context).size.height * .06,),
+
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
+                        child: DefaultTextField(
+                          hintText: AppLocalizations.of(context)!.translate('email').toString(),
+                          controller: email,
+                          isPass: false,
+                          prefixIcon: Icons.person,
+                          textInputType: TextInputType.text,
                         ),
+                      ),
 
-                        GestureDetector(
-                          onTap: (){
+                      SizedBox(height: MediaQuery.of(context).size.height * .035,),
 
-                            Navigator.push(context, MaterialPageRoute(builder: (_){
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height * .02),
+                        child: DefaultTextField(
+                          hintText: AppLocalizations.of(context)!.translate('password').toString(),
+                          controller: password,
+                          prefixIcon: Icons.lock,
+                          isPass: true,
+                          textInputType: TextInputType.text,
+                        ),
+                      ),
 
-                              return const DriverRegisterScreen();
+                      SizedBox(
+                        height: size.height * .04,
+                      ),
 
-                            }));
+                      state is UserLoginLoadingState?
+                      Center(
+                        child: CircularProgressIndicator(color: ColorManager.black,),
+                      ):
+                      MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7)
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.2:MediaQuery.of(context).size.height*.155,
+                          vertical: MediaQuery.of(context).size.height*.018,
+                        ),
+                        color: ColorManager.buttonColor,
+                        onPressed: (){
 
-                          },
-                          child: Text(AppLocalizations.of(context)!.translate('register').toString(),style: GoogleFonts.almarai(
-                              fontWeight: FontWeight.w700,
+                          if(formKey.currentState!.validate()){
+
+                            cubit.userLogin(
+                                email: email.text,
+                                password: password.text
+                            );
+
+                          }
+
+
+                        },
+                        child:Text(AppLocalizations.of(context)!.translate('login').toString(),style: GoogleFonts.almarai(
+                            fontWeight: FontWeight.w600,
+                            fontSize: MediaQuery.of(context).size.height*.022,
+                            color: ColorManager.white
+                        ),),
+                      ),
+
+
+                      SizedBox(
+                        height: size.height * .04,
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(AppLocalizations.of(context)!.translate('registerMessage').toString(),style: GoogleFonts.almarai(
+                              fontWeight: FontWeight.w300,
                               fontSize: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.022:MediaQuery.of(context).size.height*.025,
-                              color: ColorManager.textColor
-                          ),
+                              color: ColorManager.black),
                             textAlign: TextAlign.center,
                           ),
-                        ),
-                      ],
-                    ),
 
-                    SizedBox(height: size.height *.02),
+                          SizedBox(
+                            width: size.height * .007,
+                          ),
+
+                          GestureDetector(
+                            onTap: (){
+
+                              Navigator.push(context, MaterialPageRoute(builder: (_){
+
+                                return const DriverRegisterScreen();
+
+                              }));
+
+                            },
+                            child: Text(AppLocalizations.of(context)!.translate('register').toString(),style: GoogleFonts.almarai(
+                                fontWeight: FontWeight.w700,
+                                fontSize: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.022:MediaQuery.of(context).size.height*.025,
+                                color: ColorManager.textColor
+                            ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: size.height *.02),
 
 
-                    TextButton(
-                      onPressed: (){
-
-                        if (cubit.isCheckBoxTrue == true) {
-
+                      TextButton(
+                        onPressed: (){
                           cubit.getUser(id: 'HtjmznoitMXJuRoNeDviXhMkh7A3');
                           Navigator.push(context, MaterialPageRoute(builder: (_){
 
@@ -230,47 +219,54 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
 
                           }));
 
-                        } else{
-                          customToast(title:AppLocalizations.of(context)!.translate('privacyToast').toString(), color: Colors.red);
-                        }
-                      },
-                      child: Text(
-                          AppLocalizations.of(context)!.translate('loginAsAGuest').toString(),
-                        style: GoogleFonts.almarai(
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.w700,
-                            color: ColorManager.textColor,
-                            decoration: TextDecoration.underline
+                          print(cubit.driverModel!.name);
+                          print(cubit.driverModel!.isVerified);
+                          // if (cubit.isCheckBoxTrue == true) {
+                          //
+                          //
+                          //
+                          // } else{
+                          //   customToast(title:AppLocalizations.of(context)!.translate('privacyToast').toString(), color: Colors.red);
+                          // }
+                        },
+                        child: Text(
+                            AppLocalizations.of(context)!.translate('loginAsAGuest').toString(),
+                          style: GoogleFonts.almarai(
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w700,
+                              color: ColorManager.textColor,
+                              decoration: TextDecoration.underline
+                          ),
                         ),
                       ),
-                    ),
 
 
-                    // GestureDetector(
-                    //   onTap: (){
-                    //
-                    //     Navigator.push(context, MaterialPageRoute(builder: (_){
-                    //
-                    //       return const ViewDriverRequestScreen();
-                    //
-                    //     }));
-                    //
-                    //   },
-                    //   child: Text(AppLocalizations.of(context)!.translate('admin').toString(),style: GoogleFonts.almarai(
-                    //       fontWeight: FontWeight.w700,
-                    //       fontSize: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.022:MediaQuery.of(context).size.height*.025,
-                    //       color: ColorManager.textColor
-                    //   ),
-                    //     textAlign: TextAlign.center,
-                    //   ),
-                    // ),
-
-
+                      // GestureDetector(
+                      //   onTap: (){
+                      //
+                      //     Navigator.push(context, MaterialPageRoute(builder: (_){
+                      //
+                      //       return const ViewDriverRequestScreen();
+                      //
+                      //     }));
+                      //
+                      //   },
+                      //   child: Text(AppLocalizations.of(context)!.translate('admin').toString(),style: GoogleFonts.almarai(
+                      //       fontWeight: FontWeight.w700,
+                      //       fontSize: CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'?MediaQuery.of(context).size.height*.022:MediaQuery.of(context).size.height*.025,
+                      //       color: ColorManager.textColor
+                      //   ),
+                      //     textAlign: TextAlign.center,
+                      //   ),
+                      // ),
 
 
 
 
-                  ],
+
+
+                    ],
+                  ),
                 ),
               ),
             ),

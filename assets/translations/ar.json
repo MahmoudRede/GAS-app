@@ -54,6 +54,14 @@
   "driverAccept": "تم قبول السائق",
   "driverRefuse": "تم رفض السائق",
   "loginAsAGuest": "تسجيل الدخول كزائر",
+  "updateOrders": "تحديث الطلبات",
+  "shareYourLocation": "شارك عنوانك",
+  "location": "الموقع",
+  "yes": "نعم",
+  "no": "لا",
+  "attentionMessage": "هل انتا متاكد من انك تريد توصيل هذا الطلب",
+  "itemAddedToYourOrders": "تم اضافه العنصر الي طلباتك",
+  "itemDeleteToYourOrders": "تم حذف العنصر من طلباتك",
   "warningToast": "يرجى تسجيل الدخول وإعادة المحاولة"
 
 

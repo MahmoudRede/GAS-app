@@ -48,7 +48,7 @@ class MyOrderWidget extends StatelessWidget {
                           cubit.deleteOrder(id: int.parse(cubit.selectedOrders[index]['favorite']));
                           // cubit.doneUserOrder(id:int.parse(cubit.selectedOrders[index]['favorite']) );
                           cubit.orderDone(value,index);
-                          cubit.deleteSelectedOrdersDatabase(name: cubit.selectedOrders[index]['name']);
+                          cubit.deleteSelectedOrdersDatabase(name: cubit.selectedOrders[index]['name'],context: context);
                           customToast(title:AppLocalizations.of(context)!.translate('orderArrived').toString(), color: Colors.red);
                           cubit.isDone=List.generate(100, (index) => false);
                         }
@@ -94,7 +94,8 @@ class MyOrderWidget extends StatelessWidget {
                       child: Text(cubit.selectedOrders[index]['address'],style: GoogleFonts.almarai(
                           fontWeight: FontWeight.w700,
                           fontSize: MediaQuery.of(context).size.height*.024,
-                          color: ColorManager.black),
+                          color: ColorManager.black
+                      ),
                       ),
                     ),
                   ],
@@ -104,11 +105,13 @@ class MyOrderWidget extends StatelessWidget {
 
                 Row(
                   children: [
+
                     Text('${AppLocalizations.of(context)!.translate('address').toString()} :',style: GoogleFonts.almarai(
                         fontWeight: FontWeight.w700,
                         fontSize: MediaQuery.of(context).size.height*.024,
-                        color: ColorManager.textColor),
-                      textAlign: TextAlign.center,
+                        color: ColorManager.textColor
+                    ),
+                        textAlign: TextAlign.center,
                     ),
 
                     SizedBox(width: MediaQuery.of(context).size.height*.01,),
@@ -116,14 +119,17 @@ class MyOrderWidget extends StatelessWidget {
                     Expanded(
                       child: Text(cubit.selectedOrders[index]['price'],style: GoogleFonts.almarai(
                           fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
                           fontSize: MediaQuery.of(context).size.height*.024,
-                          color: ColorManager.black),
+                          color: ColorManager.black
+                      ),
                       ),
                     ),
                   ],
                 ),
 
                 SizedBox(height: MediaQuery.of(context).size.height*.02,),
+
 
                 Row(
                   children: [
@@ -199,31 +205,31 @@ class MyOrderWidget extends StatelessWidget {
 
                     SizedBox(width: MediaQuery.of(context).size.height*.01,),
 
-                    Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        child: MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7)
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            vertical: MediaQuery.of(context).size.height*.018,
-                          ),
-                          color: ColorManager.buttonColor,
-                          onPressed: (){
-
-                            cubit.unSelectedUserOrder(id: int.parse(cubit.selectedOrders[index]['favorite']));
-                            cubit.deleteSelectedOrdersDatabase(name: cubit.selectedOrders[index]['name']);
-
-                          },
-                          child: Text(AppLocalizations.of(context)!.translate('remove').toString(),style: GoogleFonts.almarai(
-                              fontWeight: FontWeight.w600,
-                              fontSize: MediaQuery.of(context).size.height*.022,
-                              color: ColorManager.white
-                          ),),
-                        ),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: SizedBox(
+                    //     width: double.infinity,
+                    //     child: MaterialButton(
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(7)
+                    //       ),
+                    //       padding: EdgeInsets.symmetric(
+                    //         vertical: MediaQuery.of(context).size.height*.018,
+                    //       ),
+                    //       color: ColorManager.buttonColor,
+                    //       onPressed: (){
+                    //
+                    //         cubit.unSelectedUserOrder(id: int.parse(cubit.selectedOrders[index]['favorite']));
+                    //         cubit.deleteSelectedOrdersDatabase(name: cubit.selectedOrders[index]['name'],context: context);
+                    //
+                    //       },
+                    //       child: Text(AppLocalizations.of(context)!.translate('remove').toString(),style: GoogleFonts.almarai(
+                    //           fontWeight: FontWeight.w600,
+                    //           fontSize: MediaQuery.of(context).size.height*.022,
+                    //           color: ColorManager.white
+                    //       ),),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
 

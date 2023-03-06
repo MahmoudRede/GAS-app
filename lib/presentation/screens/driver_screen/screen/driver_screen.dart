@@ -64,7 +64,30 @@ class DriverScreen extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          cubit.switchBetweenOrderAndMyOrders();
+                          if(cubit.driverModel!.uId=='HtjmznoitMXJuRoNeDviXhMkh7A3'){
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Image(
+                                      height: MediaQuery.of(context).size.height*.07,
+                                      width: MediaQuery.of(context).size.height*.04,
+                                      image: const AssetImage('assets/images/warning.png')
+                                  ),
+                                ),
+                                content: Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
+                                    color: ColorManager.textColor,
+                                    fontSize: 16
+                                ),
+                                  textAlign: TextAlign.center,
+                                ),
+
+                              ),
+                            );
+                          }else{
+                            cubit.switchBetweenOrderAndMyOrders();
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.all(MediaQuery.of(context).size.height*.017),
@@ -90,7 +113,30 @@ class DriverScreen extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          cubit.switchBetweenOrderAndMyOrders();
+                          if(cubit.driverModel!.uId=='HtjmznoitMXJuRoNeDviXhMkh7A3'){
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Image(
+                                      height: MediaQuery.of(context).size.height*.07,
+                                      width: MediaQuery.of(context).size.height*.04,
+                                      image: const AssetImage('assets/images/warning.png')
+                                  ),
+                                ),
+                                content: Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
+                                    color: ColorManager.textColor,
+                                    fontSize: 16
+                                ),
+                                  textAlign: TextAlign.center,
+                                ),
+
+                              ),
+                            );
+                          }else{
+                            cubit.switchBetweenOrderAndMyOrders();
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.all(MediaQuery.of(context).size.height*.017),
@@ -238,6 +284,22 @@ class DriverScreen extends StatelessWidget {
           ):
           Center(
             child: CircularProgressIndicator(color: ColorManager.black,),
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: ColorManager.buttonColor,
+            onPressed: (){
+               cubit.getAllUserOrders();
+            },
+            label: Text(
+                AppLocalizations.of(context)!.translate('updateOrders').toString(),
+                style:GoogleFonts.almarai(
+                    fontWeight: FontWeight.w500,
+                    fontSize: MediaQuery.of(context).size.height*.018,
+                    color: ColorManager.white
+                )),
+            icon: const Icon(
+              Icons.update
+            ),
           ),
         );
       },

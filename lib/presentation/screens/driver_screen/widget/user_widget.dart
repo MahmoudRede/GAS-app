@@ -60,9 +60,33 @@ class UserWidget extends StatelessWidget {
 
                 SizedBox(height: MediaQuery.of(context).size.height*.02,),
 
+                // Row(
+                //   children: [
+                //     Text('${AppLocalizations.of(context)!.translate('name').toString()} :',style: GoogleFonts.almarai(
+                //         fontWeight: FontWeight.w700,
+                //         fontSize: MediaQuery.of(context).size.height*.024,
+                //         color: ColorManager.textColor),
+                //       textAlign: TextAlign.center,
+                //     ),
+                //
+                //     SizedBox(width: MediaQuery.of(context).size.height*.01,),
+                //
+                //     Expanded(
+                //       child: Text('${cubit.allUsers[index].firstName!}  ${cubit.allUsers[index].lastName!}',style: GoogleFonts.almarai(
+                //           fontWeight: FontWeight.w700,
+                //           fontSize: MediaQuery.of(context).size.height*.024,
+                //           color: ColorManager.black),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+
+                // SizedBox(height: MediaQuery.of(context).size.height*.02,),
+
+
                 Row(
                   children: [
-                    Text('${AppLocalizations.of(context)!.translate('name').toString()} :',style: GoogleFonts.almarai(
+                    Text('${AppLocalizations.of(context)!.translate('location').toString()} :',style: GoogleFonts.almarai(
                         fontWeight: FontWeight.w700,
                         fontSize: MediaQuery.of(context).size.height*.024,
                         color: ColorManager.textColor),
@@ -71,11 +95,21 @@ class UserWidget extends StatelessWidget {
 
                     SizedBox(width: MediaQuery.of(context).size.height*.01,),
 
-                    Expanded(
-                      child: Text('${cubit.allUsers[index].firstName!}  ${cubit.allUsers[index].lastName!}',style: GoogleFonts.almarai(
-                          fontWeight: FontWeight.w700,
-                          fontSize: MediaQuery.of(context).size.height*.024,
-                          color: ColorManager.black),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.height*.3,
+                      child: GestureDetector(
+                        onTap: (){
+                          cubit.toLocation(locationLink: cubit.allUsers[index].location!);
+                        },
+                        child: Expanded(
+                          child: Text(cubit.allUsers[index].location!,style: GoogleFonts.almarai(
+                              fontWeight: FontWeight.w700,
+                              decoration: TextDecoration.underline,
+                              fontSize: MediaQuery.of(context).size.height*.022,
+                              color: ColorManager.black),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -94,6 +128,8 @@ class UserWidget extends StatelessWidget {
 
                     SizedBox(width: MediaQuery.of(context).size.height*.01,),
 
+
+
                     Expanded(
                       child: Text(cubit.allUsers[index].address!,style: GoogleFonts.almarai(
                           fontWeight: FontWeight.w700,
@@ -104,28 +140,28 @@ class UserWidget extends StatelessWidget {
                   ],
                 ),
 
-                SizedBox(height: MediaQuery.of(context).size.height*.02,),
-
-                Row(
-                  children: [
-                    Text('${AppLocalizations.of(context)!.translate('phoneNumber').toString()} :',style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).size.height*.024,
-                        color: ColorManager.textColor),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    SizedBox(width: MediaQuery.of(context).size.height*.01,),
-
-                    Expanded(
-                      child: Text(cubit.allUsers[index].phoneNumber!,style: GoogleFonts.almarai(
-                          fontWeight: FontWeight.w700,
-                          fontSize: MediaQuery.of(context).size.height*.024,
-                          color: ColorManager.black),
-                      ),
-                    ),
-                  ],
-                ),
+                // SizedBox(height: MediaQuery.of(context).size.height*.02,),
+                //
+                // Row(
+                //   children: [
+                //     Text('${AppLocalizations.of(context)!.translate('phoneNumber').toString()} :',style: GoogleFonts.almarai(
+                //         fontWeight: FontWeight.w700,
+                //         fontSize: MediaQuery.of(context).size.height*.024,
+                //         color: ColorManager.textColor),
+                //       textAlign: TextAlign.center,
+                //     ),
+                //
+                //     SizedBox(width: MediaQuery.of(context).size.height*.01,),
+                //
+                //     Expanded(
+                //       child: Text(cubit.allUsers[index].phoneNumber!,style: GoogleFonts.almarai(
+                //           fontWeight: FontWeight.w700,
+                //           fontSize: MediaQuery.of(context).size.height*.024,
+                //           color: ColorManager.black),
+                //       ),
+                //     ),
+                //   ],
+                // ),
 
                 SizedBox(height: MediaQuery.of(context).size.height*.02,),
 
@@ -155,7 +191,7 @@ class UserWidget extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: MaterialButton(
                           shape: RoundedRectangleBorder(
@@ -209,7 +245,7 @@ class UserWidget extends StatelessWidget {
                     SizedBox(width: MediaQuery.of(context).size.height*.01,),
 
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: MaterialButton(
                           shape: RoundedRectangleBorder(
@@ -243,14 +279,82 @@ class UserWidget extends StatelessWidget {
                                 ),
                               );
                             }else{
-                              cubit.selectedUserOrder(
-                                  id: cubit.allUsers[index].uId!,
-                                  email: cubit.allUsers[index].email!,
-                                  firstName: '${cubit.allUsers[index].firstName!}  ${cubit.allUsers[index].lastName!}',
-                                  address: cubit.allUsers[index].address!,
-                                  phoneNumber: cubit.allUsers[index].phoneNumber!,
-                                  totalPrice:cubit.allUsers[index].totalPrice!
+
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Image(
+                                        height: MediaQuery.of(context).size.height*.07,
+                                        width: MediaQuery.of(context).size.height*.04,
+                                        image: const AssetImage('assets/images/problems.png')
+                                    ),
+                                  ),
+                                  content: Container(
+                                    height: MediaQuery.of(context).size.height*.15,
+                                    child: Column(
+                                      children: [
+                                        Text(AppLocalizations.of(context)!.translate('attentionMessage').toString(),style: GoogleFonts.almarai(
+                                            color: ColorManager.textColor,
+                                            fontSize: 16
+                                        ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        SizedBox(height: MediaQuery.of(context).size.height*.025,),
+
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: MaterialButton(
+                                                onPressed: (){
+                                                  cubit.selectedUserOrder(
+                                                      id: cubit.allUsers[index].uId!,
+                                                      email: cubit.allUsers[index].email!,
+                                                      firstName: '${cubit.allUsers[index].firstName!}  ${cubit.allUsers[index].lastName!}',
+                                                      address: cubit.allUsers[index].location!,
+                                                      phoneNumber: cubit.allUsers[index].phoneNumber!,
+                                                      totalPrice:cubit.allUsers[index].totalPrice!,
+                                                      context: context
+                                                  ).then((value) {
+                                                    Navigator.pop(context);
+                                                  });
+                                                },
+                                                color: ColorManager.primaryColor,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(7)
+                                                ),
+                                                child: Text(AppLocalizations.of(context)!.translate('yes').toString(),style: GoogleFonts.almarai(
+                                                    color: ColorManager.white,
+                                                    fontSize: 16
+                                                ),),
+                                              ),
+                                            ),
+                                            SizedBox(width: MediaQuery.of(context).size.height*.015,),
+                                            Expanded(
+                                              child: MaterialButton(
+                                                color: ColorManager.red,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(7)
+                                                ),
+                                                onPressed: (){
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(AppLocalizations.of(context)!.translate('no').toString(),style: GoogleFonts.almarai(
+                                                    color: ColorManager.white,
+                                                    fontSize: 16
+                                                ),),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+
+                                ),
                               );
+
                             }
 
                           },
