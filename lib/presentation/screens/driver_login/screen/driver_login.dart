@@ -212,15 +212,13 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
 
                       TextButton(
                         onPressed: (){
-                          cubit.getUser(id: 'HtjmznoitMXJuRoNeDviXhMkh7A3');
+                          cubit.getUser(id: 'NFbh7U5BonVDKTIjT2t1');
                           Navigator.push(context, MaterialPageRoute(builder: (_){
 
                             return const DriverScreen();
 
                           }));
 
-                          print(cubit.driverModel!.name);
-                          print(cubit.driverModel!.isVerified);
                           // if (cubit.isCheckBoxTrue == true) {
                           //
                           //
