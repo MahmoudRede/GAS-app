@@ -103,20 +103,27 @@ class MyOrderWidget extends StatelessWidget {
 
                 SizedBox(height: MediaQuery.of(context).size.height*.02,),
 
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    Text('${AppLocalizations.of(context)!.translate('address').toString()} :',style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).size.height*.024,
-                        color: ColorManager.textColor
-                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text('${AppLocalizations.of(context)!.translate('address').toString()} :',style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w700,
+                          fontSize: MediaQuery.of(context).size.height*.024,
+                          color: ColorManager.textColor
+                      ),
                         textAlign: TextAlign.center,
+                      ),
                     ),
 
-                    SizedBox(width: MediaQuery.of(context).size.height*.01,),
+                    SizedBox(height: MediaQuery.of(context).size.height*.015,),
 
-                    Expanded(
+                    GestureDetector(
+                      onTap: (){
+                        cubit.toLocation(locationLink: cubit.selectedOrders[index]['price']);
+                      },
                       child: Text(cubit.selectedOrders[index]['price'],style: GoogleFonts.almarai(
                           fontWeight: FontWeight.w700,
                           decoration: TextDecoration.underline,

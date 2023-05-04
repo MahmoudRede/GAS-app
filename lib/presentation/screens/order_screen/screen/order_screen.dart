@@ -116,7 +116,7 @@ class OrderScreen extends StatelessWidget {
                                       address: cubit.address.text,
                                       location: cubit.location.text,
                                       phoneNumber: cubit.phoneNumber.text,
-                                      uId: CashHelper.getData(key: 'userUid',),
+                                      uId: Random().nextInt(10000000) + 0,
 
                                   );
 
@@ -203,6 +203,7 @@ class OrderScreen extends StatelessWidget {
                           ),),
                           SizedBox(height: MediaQuery.of(context).size.height*.015,),
                           DefaultTextField(
+                            isLocation: true,
                             hintText: '',
                             prefixIcon: Icons.my_location_outlined,
                             controller: cubit.location,

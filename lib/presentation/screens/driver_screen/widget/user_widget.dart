@@ -84,32 +84,30 @@ class UserWidget extends StatelessWidget {
                 // SizedBox(height: MediaQuery.of(context).size.height*.02,),
 
 
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${AppLocalizations.of(context)!.translate('location').toString()} :',style: GoogleFonts.almarai(
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).size.height*.024,
-                        color: ColorManager.textColor),
-                      textAlign: TextAlign.center,
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text('${AppLocalizations.of(context)!.translate('location').toString()} :',style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w700,
+                          fontSize: MediaQuery.of(context).size.height*.024,
+                          color: ColorManager.textColor),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
 
-                    SizedBox(width: MediaQuery.of(context).size.height*.01,),
+                    SizedBox(height: MediaQuery.of(context).size.height*.015,),
 
-                    SizedBox(
-                      width: MediaQuery.of(context).size.height*.3,
-                      child: GestureDetector(
-                        onTap: (){
-                          cubit.toLocation(locationLink: cubit.allUsers[index].location!);
-                        },
-                        child: Expanded(
-                          child: Text(cubit.allUsers[index].location!,style: GoogleFonts.almarai(
-                              fontWeight: FontWeight.w700,
-                              decoration: TextDecoration.underline,
-                              fontSize: MediaQuery.of(context).size.height*.022,
-                              color: ColorManager.black),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                    GestureDetector(
+                      onTap: (){
+                        cubit.toLocation(locationLink: cubit.allUsers[index].location!);
+                      },
+                      child: Text(cubit.allUsers[index].location!,style: GoogleFonts.almarai(
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          fontSize: MediaQuery.of(context).size.height*.022,
+                          color: ColorManager.black),
                       ),
                     ),
                   ],

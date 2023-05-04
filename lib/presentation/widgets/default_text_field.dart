@@ -1,6 +1,7 @@
 
 import 'package:gas/business_logic/localization_cubit/app_localization.dart';
 import 'package:gas/style/app_color.dart';
+import 'package:gas/utils/local/cash_helper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class DefaultTextField extends StatefulWidget {
   IconData? prefixIcon;
   IconData? suffixIcon;
   bool isPass ;
+  bool isLocation ;
   int? lines;
   Color ? hintColor;
   TextInputType textInputType;
@@ -20,6 +22,7 @@ class DefaultTextField extends StatefulWidget {
     required this.controller,
      this.hintColor=Colors.black,
     this.isPass = false,
+    this.isLocation = false,
     required this.textInputType,
      this.labelText = "",
       this.prefixIcon,
@@ -44,6 +47,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextFormField(
+        textDirection: widget.isLocation==false? CashHelper.getData(key: CashHelper.languageKey).toString() == 'en'? TextDirection.ltr:TextDirection.rtl:TextDirection.ltr,
         style: GoogleFonts.almarai(
           fontSize: MediaQuery.of(context).size.height*.022,
           fontWeight: FontWeight.w500,

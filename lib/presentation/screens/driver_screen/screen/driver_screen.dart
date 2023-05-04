@@ -25,6 +25,22 @@ class DriverScreen extends StatelessWidget {
 
           appBar: AppBar(
             elevation: 0.0,
+            actions: [
+              CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                    onPressed: (){
+                      cubit.getAllUserOrders();
+                    },
+                    icon: Icon(
+                      Icons.update,
+                      color: ColorManager.textColor,
+                    )
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.height*.012,),
+
+            ],
             leading: GestureDetector(
               onTap: (){
                 Navigator.pop(context);
@@ -285,22 +301,21 @@ class DriverScreen extends StatelessWidget {
           Center(
             child: CircularProgressIndicator(color: ColorManager.black,),
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: ColorManager.buttonColor,
-            onPressed: (){
-               cubit.getAllUserOrders();
-            },
-            label: Text(
-                AppLocalizations.of(context)!.translate('updateOrders').toString(),
-                style:GoogleFonts.almarai(
-                    fontWeight: FontWeight.w500,
-                    fontSize: MediaQuery.of(context).size.height*.018,
-                    color: ColorManager.white
-                )),
-            icon: const Icon(
-              Icons.update
-            ),
-          ),
+          // floatingActionButton: FloatingActionButton.extended(
+          //   backgroundColor: ColorManager.buttonColor,
+          //   onPressed: (){
+          //   },
+          //   label: Text(
+          //       AppLocalizations.of(context)!.translate('updateOrders').toString(),
+          //       style:GoogleFonts.almarai(
+          //           fontWeight: FontWeight.w500,
+          //           fontSize: MediaQuery.of(context).size.height*.018,
+          //           color: ColorManager.white
+          //       )),
+          //   icon: const Icon(
+          //     Icons.update
+          //   ),
+          // ),
         );
       },
 
