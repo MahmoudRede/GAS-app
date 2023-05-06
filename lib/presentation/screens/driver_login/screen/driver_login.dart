@@ -213,19 +213,58 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
                       TextButton(
                         onPressed: (){
                           cubit.getUser(id: 'NFbh7U5BonVDKTIjT2t1');
+
                           Navigator.push(context, MaterialPageRoute(builder: (_){
 
                             return const DriverScreen();
 
                           }));
+                          showDialog<String>(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Image(
+                                    height: MediaQuery.of(context).size.height*.07,
+                                    width: MediaQuery.of(context).size.height*.04,
+                                    image: const AssetImage('assets/images/warning.png')
+                                ),
+                              ),
+                              content: Container(
+                                height: MediaQuery.of(context).size.height*.15,
+                                child: Column(
+                                  children: [
+                                    Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
+                                        color: ColorManager.textColor,
+                                        fontSize: 16
+                                    ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(height: MediaQuery.of(context).size.height*.03,),
+                                    MaterialButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(7)
+                                      ),
+                                      color: ColorManager.red,
+                                      onPressed: (){
+                                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                                            DriverLoginScreen()), (Route<dynamic> route) => false);
+                                      },
+                                      child: Text(AppLocalizations.of(context)!.translate('registerTitle').toString(),style: GoogleFonts.almarai(
+                                          color: ColorManager.white,
+                                          fontSize: 16
+                                      ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
 
-                          // if (cubit.isCheckBoxTrue == true) {
-                          //
-                          //
-                          //
-                          // } else{
-                          //   customToast(title:AppLocalizations.of(context)!.translate('privacyToast').toString(), color: Colors.red);
-                          // }
+                            ),
+                          );
+
                         },
                         child: Text(
                             AppLocalizations.of(context)!.translate('loginAsAGuest').toString(),

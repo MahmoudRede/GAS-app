@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gas/business_logic/app_cubit/app_cubit.dart';
 import 'package:gas/business_logic/app_cubit/app_states.dart';
 import 'package:gas/business_logic/localization_cubit/app_localization.dart';
+import 'package:gas/presentation/screens/driver_login/screen/driver_login.dart';
 import 'package:gas/presentation/screens/driver_screen/widget/my_order_widget.dart';
 import 'package:gas/presentation/screens/driver_screen/widget/user_widget.dart';
 import 'package:gas/style/app_color.dart';
@@ -80,7 +81,7 @@ class DriverScreen extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          if(cubit.driverModel!.uId=='HtjmznoitMXJuRoNeDviXhMkh7A3'){
+                          if(cubit.driverModel!.uId=='NFbh7U5BonVDKTIjT2t1'){
                             showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -92,11 +93,35 @@ class DriverScreen extends StatelessWidget {
                                       image: const AssetImage('assets/images/warning.png')
                                   ),
                                 ),
-                                content: Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
-                                    color: ColorManager.textColor,
-                                    fontSize: 16
-                                ),
-                                  textAlign: TextAlign.center,
+                                content: Container(
+                                  height: MediaQuery.of(context).size.height*.15,
+                                  child: Column(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
+                                          color: ColorManager.textColor,
+                                          fontSize: 16
+                                      ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(height: MediaQuery.of(context).size.height*.03,),
+                                      MaterialButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(7)
+                                        ),
+                                        color: ColorManager.red,
+                                        onPressed: (){
+                                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                                              DriverLoginScreen()), (Route<dynamic> route) => false);
+                                        },
+                                        child: Text(AppLocalizations.of(context)!.translate('registerTitle').toString(),style: GoogleFonts.almarai(
+                                            color: ColorManager.white,
+                                            fontSize: 16
+                                        ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
 
                               ),
@@ -129,7 +154,7 @@ class DriverScreen extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          if(cubit.driverModel!.uId=='HtjmznoitMXJuRoNeDviXhMkh7A3'){
+                          if(cubit.driverModel!.uId=='NFbh7U5BonVDKTIjT2t1'){
                             showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -141,16 +166,43 @@ class DriverScreen extends StatelessWidget {
                                       image: const AssetImage('assets/images/warning.png')
                                   ),
                                 ),
-                                content: Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
-                                    color: ColorManager.textColor,
-                                    fontSize: 16
-                                ),
-                                  textAlign: TextAlign.center,
+                                content: Container(
+                                  height: MediaQuery.of(context).size.height*.15,
+                                  child: Column(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.translate('warningToast').toString(),style: GoogleFonts.almarai(
+                                          color: ColorManager.textColor,
+                                          fontSize: 16
+                                      ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(height: MediaQuery.of(context).size.height*.03,),
+                                      MaterialButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(7)
+                                        ),
+                                        color: ColorManager.red,
+                                        onPressed: (){
+
+                                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                                              DriverLoginScreen()), (Route<dynamic> route) => false);
+
+                                        },
+                                        child: Text(AppLocalizations.of(context)!.translate('registerTitle').toString(),style: GoogleFonts.almarai(
+                                            color: ColorManager.white,
+                                            fontSize: 16
+                                        ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
 
                               ),
                             );
                           }else{
+                            print(cubit.driverModel!.uId);
                             cubit.switchBetweenOrderAndMyOrders();
                           }
                         },
