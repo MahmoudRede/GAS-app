@@ -220,6 +220,7 @@ class _DriverLoginScreenState extends State<DriverLoginScreen> {
 
                           }));
                           showDialog<String>(
+                            barrierColor: Colors.black.withOpacity(.98),
                             context: context,
                             barrierDismissible: false,
                             builder: (BuildContext context) => AlertDialog(
